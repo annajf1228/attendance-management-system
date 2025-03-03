@@ -1,0 +1,37 @@
+@use '../variables' as *;
+
+.login-index {
+  &__main {
+    width: 80%;
+    max-width: 300px;
+    margin: 69px auto;
+
+    &-title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    &-user-login-button {
+      background-color: $purple01;
+      color: $white01;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    &-admin-login-button {
+      background-color: $black02;
+      color: $white01;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+}

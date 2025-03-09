@@ -5,6 +5,11 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
+@import "admin/admin";
+@import "login/index";
+@import "common/base";
+
+
 //　default
 html, body {
   padding: 0;
@@ -25,4 +30,9 @@ a {
 p {
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-size: 27px;
+  font-weight: bold;
 }

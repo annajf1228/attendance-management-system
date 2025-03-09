@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name') }}</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/sass/common/base.scss'])
+    <title>{{ config('const.title.user') }}</title>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body class="base">
     <header class="base__header">
         <nav class="base__header-nav">
-            <a class="base__header-title" href="#">{{ config('app.name') }}</a>
+            <a class="base__header-title" href="#">{{ config('const.title.user') }}</a>
             <div class="base__header-user">
                 <span class="base__header-user-name">
                     {{ Auth::guard('web')->user()->name }}

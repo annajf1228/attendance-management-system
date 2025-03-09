@@ -1,5 +1,3 @@
-@use '../variables' as *;
-
 .base {
   height: 100vh;
   display: flex;
@@ -57,15 +55,18 @@
     background-color: $white02;
     width: 15%;
 
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 15px 20px;
+    }
+
     &.admin-sidebar {
       nav ul li:hover {
         background-color: $admin-sidebar-hover;
       }
     }
-  }
-
-  &__sidebar nav ul li {
-    padding: 15px 20px;
   }
 
   &__sidebar nav ul li:hover {

@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name') }} | ログイン</title>
-    @vite(['resources/sass/app.scss', 'resources/sass/login/index.scss', 'resources/js/app.js'])
+    @if ($type === 'user')
+    <title>{{ config('const.title.web_title.user') }} | {{ config('const.title.sub_title.login') }}</title>
+    @else
+    <title>{{ config('const.title.web_title.admin')}} | {{ config('const.title.sub_title.login') }}</title>
+    @endif
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body class="login-index">
     <main class="login-index__main">
@@ -14,7 +18,11 @@
         <form action="{{ route('admin.login') }}" method="POST">
         @endif
             @csrf
-            <h1 class="login-index__main-title">{{ config('app.name') }}</h1>
+            @if ($type === 'user')
+            <h1 class="login-index__main-title">{{ config('const.title.web_title.user') }}</h1>
+            @else
+            <h1 class="login-index__main-title">{{ config('const.title.web_title.admin') }}</h1>
+            @endif
 
             @if (session('error'))
             <div class="alert alert-danger">{{session('error')}}</div>
@@ -28,7 +36,7 @@
                 <label for="FormControlEmail" class="form-label">
                     メールアドレス
                 </label>
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="FormControlEmail" placeholder="メールアドレスを入力してください">
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="FormControlEmail" placeholder="xxx@exsample.com">
                 @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

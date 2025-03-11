@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\Login\LoginUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class UserLoginController extends Controller
 {
     /**
      * ログイン画面表示
-     * @return Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\View
      */
     public function index(): View
     {
@@ -22,10 +23,10 @@ class UserLoginController extends Controller
 
     /**
      * ログイン処理
-     * @param App\Http\Requests\Request
-     * @return Illuminate\Http\RedirectResponse
+     * @param \App\Http\Requests\User\Login\LoginUserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function login(Request $request): RedirectResponse
+    public function login(LoginUserRequest $request): RedirectResponse
     {
         $credentials = $request->only('email', 'password');
 
@@ -41,7 +42,7 @@ class UserLoginController extends Controller
     /**
      * ログアウト処理
      * @param  \Illuminate\Http\Request  $request
-     * @return Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(Request $request): RedirectResponse
     {

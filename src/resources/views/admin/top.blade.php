@@ -22,10 +22,10 @@
     </div>
     <div class="row">
         <div class="col ms-5">
-            <a href="" class="user-top-a">スタッフ管理 一覧</a>
+            <a href="{{ route('admin.user.index') }}" class="user-top-a">スタッフ管理 一覧</a>
         </div>
         <div class="col">
-            <a href="" class="user-top-a">スタッフ管理 新規登録</a>
+            <a href="{{ route('admin.user.create') }}" class="user-top-a">スタッフ管理 新規登録</a>
         </div>
     </div>
 

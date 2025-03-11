@@ -8,8 +8,11 @@ return [
       'user' => config('app.name'),
     ],
     'page_title' => [
-      'admin' => '管理者管理',
-      'user' => 'スタッフ管理',
+      'admin' => [
+        'admin' => '管理者管理',
+        'user' => 'スタッフ管理',
+      ],
+      'user' => [],
     ],
     'sub_title' => [
       'index' => '一覧',

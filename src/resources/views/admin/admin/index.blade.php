@@ -24,8 +24,8 @@
             <tr>
                 <td>{{ $admin->employee_number }}</td>
                 <td>{{ $admin->name }}</td>
-                <td>{{ $admin->created_at }}</td>
-                <td>{{ $admin->updated_at }}</td>
+                <td>{{ $admin->created_at->format('Y/m/d H:i') }}</td>
+                <td>{{ $admin->updated_at->format('Y/m/d H:i') }}</td>
                 <td><a href="{{ route('admin.show', $admin->id ) }}" class="btn btn-outline-warning">詳細</a></td>
                 <td><a href="{{ route('admin.edit', $admin->id ) }}" class="btn btn-outline-success">編集</a></td>
 

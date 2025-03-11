@@ -19,6 +19,18 @@
                     {{ $admin->name }}
                 </td>
             </tr>
+            <tr>
+                <th>作成日時</th>
+                <td>
+                    {{ $admin->created_at->format('Y/m/d H:i') }}
+                </td>
+            </tr>
+            <tr>
+                <th>更新日時</th>
+                <td>
+                    {{ $admin->updated_at->format('Y/m/d H:i') }}
+                </td>
+            </tr>
         </tbody>
     </table>
     <div class="d-flex justify-content-between">

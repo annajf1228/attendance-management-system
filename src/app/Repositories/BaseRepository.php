@@ -17,7 +17,7 @@ abstract class BaseRepository
     /**
      * @return Illuminate\Database\Eloquent\Builder
      */
-    abstract protected function createQuery(): Builder;
+    abstract function createQuery(): Builder;
 
     
     /**
@@ -43,7 +43,7 @@ abstract class BaseRepository
     /**
      * 登録
      * @param array $data
-     * @return Model
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function save(array $data): Model
     {
@@ -55,7 +55,7 @@ abstract class BaseRepository
      * ペジネーションを取得
      * @param int $perPage
      * @param array $sortData [column => true|false] 昇順の場合はtrue、降順の場合はfalseを指定
-     * @return Illuminate\Pagination\LengthAwarePaginator
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function paginate(int $perPage = 20, array $sortData = []): LengthAwarePaginator
     {

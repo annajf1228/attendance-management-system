@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', config('const.title.admin'))</title>
+    <title>@yield('title', config('const.title.web_title.admin'))</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body class="base">
     <header class="base__header admin-header-bg">
         <nav class="base__header-nav">
-            <a class="base__header-title" href="#">{{ config('const.title.admin') }}</a>
+            <a class="base__header-title" href="#">{{ config('const.title.web_title.admin') }}</a>
             <div class="base__header-user">
                 <span class="base__header-user-name">
                     {{ Auth::guard('admin')->user()->name }}
@@ -33,7 +33,7 @@
                 <ul>
                     <li><a href="{{ route('admin.top') }}">TOP</a></li>
                     <li><a href="{{ route('admin.index') }}">管理者管理</a></li>
-                    <li><a href="">スタッフ管理</a></li>
+                    <li><a href="{{ route('admin.user.index') }}">スタッフ管理</a></li>
                     <li><a href="">スタッフ勤怠管理</a></li>
                 </ul>
             </nav>
@@ -51,5 +51,5 @@
             @yield('content')
         </main>
     </div>
-
+</body>
 </html>

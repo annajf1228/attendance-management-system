@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\DB;
  */
 class AdminController extends Controller
 {
-
-    public function __construct(private AdminRepository $adminRepository) {}
+    public function __construct(private AdminRepository $adminRepository)
+    {
+    }
 
     /**
      * タイトル取得
@@ -29,7 +30,7 @@ class AdminController extends Controller
      */
     protected function getTitle(string $subTitle): array
     {
-        $pageTitle = config('const.title.page_title.admin') . ' ' . $subTitle;
+        $pageTitle = config('const.title.page_title.admin.admin') . ' ' . $subTitle;
         return [
             'pageTitle' => $pageTitle,
             'webTitle' => config('const.title.web_title.admin') . ' | ' . $pageTitle,
@@ -70,7 +71,7 @@ class AdminController extends Controller
 
     /**
      * 管理者新規登録
-     * @param  \App\Http\Requests\admin\admin\StoreAdminRequest  $request
+     * @param  \App\Http\Requests\admin\admin\StoreAdminRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
     public function store(StoreAdminRequest $request): RedirectResponse
@@ -94,7 +95,7 @@ class AdminController extends Controller
 
     /**
      * 管理者詳細画面表示
-     * @param  \App\Http\Requests\Admin\Admin\ShowAdminRequest  $request
+     * @param  \App\Http\Requests\Admin\Admin\ShowAdminRequest $request
      * @param  int $id
      * @return \Illuminate\Contracts\View\View
      */
@@ -108,7 +109,7 @@ class AdminController extends Controller
 
     /**
      * 管理者編集画面表示
-     * @param  \App\Http\Requests\Admin\Admin\ShowAdminRequest  $request
+     * @param  \App\Http\Requests\Admin\Admin\ShowAdminRequest $request
      * @param  int $id
      * @return \Illuminate\Contracts\View\View
      */
@@ -122,7 +123,7 @@ class AdminController extends Controller
 
     /**
      * 管理者更新
-     * @param  \Illuminate\Http\Request\Admin\Admin\UpdateAdminRequest  $request
+     * @param  \Illuminate\Http\Request\Admin\Admin\UpdateAdminRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
     public function update(UpdateAdminRequest $request): RedirectResponse
@@ -143,14 +144,14 @@ class AdminController extends Controller
 
     /**
      * 管理者削除
-     * @param  App\Http\Requests\Admin\Admin\DestroyAdminRequest $Request
+     * @param  App\Http\Requests\Admin\Admin\DestroyAdminRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
-    public function destroy(DestroyAdminRequest $Request): RedirectResponse
+    public function destroy(DestroyAdminRequest $request): RedirectResponse
     {
         DB::beginTransaction();
         try {
-            $this->adminRepository->delete($Request->id);
+            $this->adminRepository->delete($request->id);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -159,5 +160,5 @@ class AdminController extends Controller
         }
         return redirect(route('admin.index'))->with('success', '削除が完了しました。');
     }
-    
+
 }

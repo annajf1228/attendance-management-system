@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\WorkRecord;
 
 class User extends Authenticatable
 {
@@ -42,4 +44,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function workRecords(): HasMany
+    {
+        return $this->hasMany(WorkRecord::class);
+    }
 }

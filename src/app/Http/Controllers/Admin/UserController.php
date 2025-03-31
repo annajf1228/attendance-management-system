@@ -19,12 +19,11 @@ use Illuminate\Support\Facades\DB;
  */
 class UserController extends Controller
 {
-    public function __construct(private UserRepository $userRepository)
-    {
-    }
+    public function __construct(private UserRepository $userRepository) {}
 
     /**
      * タイトル取得
+     * 
      * @param string $subTitle
      * @return array
      */
@@ -39,6 +38,7 @@ class UserController extends Controller
 
     /**
      * スタッフ一覧表示
+     * 
      * @return \Illuminate\Contracts\View\View
      */
     public function index(): View
@@ -51,6 +51,7 @@ class UserController extends Controller
 
     /**
      * スタッフ新規登録画面表示
+     * 
      * @return \Illuminate\Contracts\View\View
      */
     public function create(): View
@@ -62,6 +63,7 @@ class UserController extends Controller
 
     /**
      * スタッフ新規登録
+     * 
      * @param  \App\Http\Requests\Admin\User\StoreUserRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
@@ -88,34 +90,35 @@ class UserController extends Controller
 
     /**
      * スタッフ詳細画面表示
+     * 
      * @param  \App\Http\Requests\Admin\User\ShowUserRequest $request
-     * @param  int $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function show(ShowUserRequest $request, int $id): View
+    public function show(ShowUserRequest $request): View
     {
         $titles = $this->getTitle(config('const.title.sub_title.show'));
-        $user = $this->userRepository->findOrFail($id);
+        $user = $this->userRepository->findOrFail($request->id);
 
         return view('admin.user.show', compact('user', 'titles'));
     }
 
     /**
      * スタッフ編集画面表示
+     * 
      * @param  \App\Http\Requests\Admin\User\ShowUserRequest $request
-     * @param  int $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit(ShowUserRequest $request, int $id): View
+    public function edit(ShowUserRequest $request): View
     {
         $titles = $this->getTitle(config('const.title.sub_title.edit'));
-        $user = $this->userRepository->findOrFail($id);
+        $user = $this->userRepository->findOrFail($request->id);
 
         return view('admin.user.edit', compact('user', 'titles'));
     }
 
     /**
      * スタッフ更新
+     * 
      * @param  \App\Http\Requests\Admin\User\UpdateUserRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
@@ -137,6 +140,7 @@ class UserController extends Controller
 
     /**
      * スタッフ削除
+     * 
      * @param  \App\Http\Requests\Admin\User\DestroyUserRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
@@ -153,5 +157,4 @@ class UserController extends Controller
         }
         return redirect(route('admin.user.index'))->with('success', '削除が完了しました。');
     }
-
 }

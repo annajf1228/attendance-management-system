@@ -9,6 +9,10 @@
 @import "login/index";
 @import "common/base";
 @import "common/common";
+@import "user/top";
+@import "user/user-common";
+@import "user/staff/index";
+@import "user/staff/edit";
 
 
 //　default
@@ -36,4 +40,9 @@ p {
 h1 {
   font-size: 27px;
   font-weight: bold;
+}
+
+.base__content {
+  height: calc(100vh - 75px);
+  overflow: auto;
 }

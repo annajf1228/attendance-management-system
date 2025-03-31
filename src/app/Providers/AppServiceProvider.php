@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Carbon\Carbon;
+use Yasumi\Yasumi;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +24,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
+
+        Carbon::macro('isHoliday', function () {
+            $holidays = Yasumi::create('Japan', $this->year);
+            return $holidays->isHoliday($this->toDateTime());
+        });
     }
 }

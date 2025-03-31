@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('const.title.user') }}</title>
+    <title>@yield('title', config('const.title.web_title.user'))</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body class="base">
     <header class="base__header">
         <nav class="base__header-nav">
-            <a class="base__header-title" href="#">{{ config('const.title.user') }}</a>
+            <a class="base__header-title" href="/">{{ config('const.title.web_title.user') }}</a>
             <div class="base__header-user">
                 <span class="base__header-user-name">
                     {{ Auth::guard('web')->user()->name }}
@@ -31,8 +31,8 @@
         <aside class="base__sidebar">
             <nav>
                 <ul>
-                    <li><a href="">トップページ</a></li>
-                    <li><a href="">勤怠一覧</a></li>
+                    <li><a href="{{ route('user.top') }}">トップページ</a></li>
+                    <li><a href="{{ route('user.staff.index') }}">勤怠一覧</a></li>
                 </ul>
             </nav>
         </aside>

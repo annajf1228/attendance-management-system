@@ -13,6 +13,7 @@ class UserLoginController extends Controller
 {
     /**
      * ログイン画面表示
+     * 
      * @return \Illuminate\Contracts\View\View
      */
     public function index(): View
@@ -23,6 +24,7 @@ class UserLoginController extends Controller
 
     /**
      * ログイン処理
+     * 
      * @param \App\Http\Requests\User\Login\LoginUserRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -32,7 +34,7 @@ class UserLoginController extends Controller
 
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('user.kintai.index')->with('success', 'ログインに成功しました。');
+            return redirect()->route('user.top')->with('success', 'ログインに成功しました。');
         }
         return back()->with([
             'error' => 'メールアドレスまたはパスワードが間違っています',
@@ -41,7 +43,8 @@ class UserLoginController extends Controller
 
     /**
      * ログアウト処理
-     * @param  \Illuminate\Http\Request  $request
+     * 
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(Request $request): RedirectResponse

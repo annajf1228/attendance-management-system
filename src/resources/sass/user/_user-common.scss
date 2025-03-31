@@ -1,0 +1,59 @@
+.work-record {
+    &.table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        display: block;
+        overflow: auto;
+    }
+
+    &.table thead {
+        position: sticky;
+        top: 0;
+
+        th {
+            background-color: $gray01;
+            color: $white01;
+            padding: 8px;
+        }
+    }
+
+    &.table tbody {
+        td {
+            padding: 1px;
+        }
+
+        .saturday-style {
+            td {
+                background-color: $blue01;
+            }
+
+            .day-of-week-style {
+                color: $blue02;
+            }
+        }
+
+        .holiday-style {
+            td {
+                background-color: $red03;
+            }
+
+            .day-of-week-style {
+                color: $red01;
+            }
+        }
+
+        .sum-style {
+            td {
+                background-color: $yellow01;
+            }
+        }
+    }
+
+    &.table th,
+    &.table td {
+        border: 1px solid #ddd;
+        text-align: center;
+        vertical-align: middle;
+    }
+}

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 /**
  * Base リポジトリ
@@ -19,9 +19,11 @@ abstract class BaseRepository
      */
     abstract function createQuery(): Builder;
 
-    
+
     /**
      * ID検索取得
+     * 
+     * @param int $id
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function findOrFail(int $id): Model
@@ -32,7 +34,8 @@ abstract class BaseRepository
 
     /**
      * 全件取得
-     * @return \Illuminate\Database\Eloquent\Collection
+     * 
+     * @return \Illuminate\Support\Collection
      */
     public function findAll(): Collection
     {
@@ -42,6 +45,7 @@ abstract class BaseRepository
 
     /**
      * 登録
+     * 
      * @param array $data
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -53,6 +57,7 @@ abstract class BaseRepository
 
     /**
      * ペジネーションを取得
+     * 
      * @param int $perPage
      * @param array $sortData [column => true|false] 昇順の場合はtrue、降順の場合はfalseを指定
      * @return \Illuminate\Pagination\LengthAwarePaginator
@@ -69,9 +74,10 @@ abstract class BaseRepository
         }
         return $query->paginate($perPage);
     }
-    
+
     /**
      * 更新
+     * 
      * @param int $id
      * @param array $data
      * @return \Illuminate\Database\Eloquent\Model
@@ -85,6 +91,7 @@ abstract class BaseRepository
 
     /**
      * 削除
+     * 
      * @param int $id
      * @return bool 
      */
@@ -92,5 +99,24 @@ abstract class BaseRepository
     {
         $model = $this->findOrFail($id);
         return $model->delete();
+    }
+
+    /**
+     * 共通の where 条件
+     * 
+     * @param array $conditions ['column' => 'value']
+     * @return \Illuminate\Support\Collection
+     */
+    public function where(array $conditions): Collection
+    {
+        $query = $this->createQuery();
+
+        foreach ($conditions as $column => $value) {
+            if (isset($value)) {
+                $query->where($column, $value);
+            }
+        }
+
+        return $query->get();
     }
 }

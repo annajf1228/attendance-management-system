@@ -25,6 +25,7 @@ class AdminController extends Controller
 
     /**
      * タイトル取得
+     * 
      * @param string $subTitle
      * @return array
      */
@@ -39,6 +40,7 @@ class AdminController extends Controller
 
     /**
      * TOP画面表示
+     * 
      * @return \Illuminate\Contracts\View\View
      */
     public function top(): View
@@ -48,6 +50,7 @@ class AdminController extends Controller
 
     /**
      * 管理者一覧表示
+     * 
      * @return \Illuminate\Contracts\View\View
      */
     public function index(): View
@@ -60,6 +63,7 @@ class AdminController extends Controller
 
     /**
      * 管理者新規登録画面表示
+     * 
      * @return \Illuminate\Contracts\View\View
      */
     public function create(): View
@@ -71,6 +75,7 @@ class AdminController extends Controller
 
     /**
      * 管理者新規登録
+     * 
      * @param  \App\Http\Requests\admin\admin\StoreAdminRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
@@ -95,34 +100,35 @@ class AdminController extends Controller
 
     /**
      * 管理者詳細画面表示
+     * 
      * @param  \App\Http\Requests\Admin\Admin\ShowAdminRequest $request
-     * @param  int $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function show(ShowAdminRequest $request, int $id): View
+    public function show(ShowAdminRequest $request): View
     {
         $titles = $this->getTitle(config('const.title.sub_title.show'));
-        $admin = $this->adminRepository->findOrFail($id);
+        $admin = $this->adminRepository->findOrFail($request->id);
 
         return view('admin.admin.show', compact('admin', 'titles'));
     }
 
     /**
      * 管理者編集画面表示
+     * 
      * @param  \App\Http\Requests\Admin\Admin\ShowAdminRequest $request
-     * @param  int $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit(ShowAdminRequest $request, int $id): View
+    public function edit(ShowAdminRequest $request): View
     {
         $titles = $this->getTitle(config('const.title.sub_title.edit'));
-        $admin = $this->adminRepository->findOrFail($id);
+        $admin = $this->adminRepository->findOrFail($request->id);
 
         return view('admin.admin.edit', compact('admin', 'titles'));
     }
 
     /**
      * 管理者更新
+     * 
      * @param  \Illuminate\Http\Request\Admin\Admin\UpdateAdminRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
@@ -144,7 +150,8 @@ class AdminController extends Controller
 
     /**
      * 管理者削除
-     * @param  App\Http\Requests\Admin\Admin\DestroyAdminRequest $request
+     * 
+     * @param  \App\Http\Requests\Admin\Admin\DestroyAdminRequest $request
      * @return \Illuminate\\Http\RedirectResponse
      */
     public function destroy(DestroyAdminRequest $request): RedirectResponse

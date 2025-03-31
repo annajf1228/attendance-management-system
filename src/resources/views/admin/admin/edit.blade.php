@@ -14,7 +14,7 @@
     <div class="d-flex justify-content-between">
         <a href="{{ route('admin.show', $admin->id) }}" class="btn btn-outline-secondary">詳細へ</a>
         <div class="d-flex">
-            <button type="submit" class="btn btn-outline-success mx-2" form="admin-update-form" onclick="return confirm('編集してもよろしいですか？')">編集</button>
+            <button type="submit" class="btn btn-outline-primary mx-2" form="admin-update-form" onclick="return confirm('更新してもよろしいですか？')">更新</button>
             <form action="{{ route('admin.destroy') }}" method="POST" id="admin-delete-form">
                 <input type="hidden" name="id" value="{{ $admin->id }}" readonly>
                 @csrf

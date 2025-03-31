@@ -13,6 +13,7 @@ class AdminLoginController extends Controller
 {
     /**
      * ログイン画面表示
+     * 
      * @return \Illuminate\Contracts\View\View
      */
     public function index(): View
@@ -23,6 +24,7 @@ class AdminLoginController extends Controller
 
     /**
      * ログイン処理
+     * 
      * @param \App\Http\Requests\Admin\Login\LoginAdminRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -40,7 +42,8 @@ class AdminLoginController extends Controller
 
     /**
      * ログアウト処理
-     * @param  \Illuminate\Http\Request  $request
+     * 
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout(Request $request): RedirectResponse

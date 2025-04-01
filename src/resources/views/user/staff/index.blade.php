@@ -87,7 +87,7 @@
     const startYear = {{ $startDate->year }};
     const startMonth = {{ $startDate->month }};
     const endYear = {{ $endDate->year }};
-    const endMonth = {{ $endDate->month }};
+    const nowMonth = new Date().getMonth() + 1;
     
     const createMonthOptions = (minMonth, maxMonth) => {
         let option = document.createElement('option');
@@ -109,7 +109,7 @@
         let maxMonth = 12;
 
         if (selectedYear === endYear) {
-            maxMonth = endMonth;
+            maxMonth = nowMonth;
         }
         if (selectedYear === startYear) {
             minMonth = startMonth;

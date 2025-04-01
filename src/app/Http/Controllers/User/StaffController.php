@@ -86,11 +86,11 @@ class StaffController extends Controller
         $endDate = $this->workRecordRepository->getWorkDateByUser($id, false);
 
         $targetDate = Carbon::create($selectedYear, $selectedMonth, 1);
-        if (!$targetDate->between($startDate, $endDate)) {
+        if (!$targetDate->between($startDate, $now)) {
             abort(404);
         }
 
-        $maxMonth = ($selectedYear == $now->year) ? $endDate->month : 12;
+        $maxMonth = ($selectedYear == $now->year) ? $now->month : 12;
         $minMonth = ($selectedYear == $startDate->year) ? $startDate->month : 1;
         $monthList = range($minMonth, $maxMonth);
 

@@ -58,11 +58,11 @@ class StaffController extends Controller
         $targetDate = Carbon::create($nowYear, $nowMonth, 1);
         $targetMonthPeriods = Common::getMonthPeriod($targetDate);
         $workRecords = $this->userRepository->findOrFailWithWorkRecord($id, $targetMonthPeriods)->workRecords;
-        $workRecordList  = $this->mapByDate($workRecords);
+        $workRecordList  = Common::mapByDate($workRecords);
         $sumBreakTime = Common::formatMinutesToTime($workRecordList->sum('break_time_minutes'));
         $sumWorkTime = Common::formatMinutesToTime($workRecordList->sum('work_time_minutes'));
 
-        $workRecordData = $this->getWorkRecordData($targetMonthPeriods, $workRecordList);
+        $workRecordData = Common::getWorkRecordData($targetMonthPeriods, $workRecordList);
 
         return view('user.top', compact('workRecordData', 'sumBreakTime', 'sumWorkTime', 'nowYear', 'nowMonth'));
     }
@@ -96,11 +96,11 @@ class StaffController extends Controller
 
         $targetMonthPeriods = Common::getMonthPeriod($targetDate);
         $workRecords = $this->userRepository->findOrFailWithWorkRecord($id, $targetMonthPeriods)->workRecords;
-        $workRecordList  = $this->mapByDate($workRecords);
+        $workRecordList  = Common::mapByDate($workRecords);
         $sumBreakTime = Common::formatMinutesToTime($workRecordList->sum('break_time_minutes'));
         $sumWorkTime = Common::formatMinutesToTime($workRecordList->sum('work_time_minutes'));
 
-        $workRecordData = $this->getWorkRecordData($targetMonthPeriods, $workRecordList);
+        $workRecordData = Common::getWorkRecordData($targetMonthPeriods, $workRecordList);
 
         return view('user.staff.index', compact(
             'titles',
@@ -219,60 +219,4 @@ class StaffController extends Controller
         return redirect(route('user.staff.edit', $workRecord->id))->with('success', '更新が完了しました。');
     }
 
-    /**
-     * 勤怠データを日付ごとに整理
-     * 
-     * @param \Illuminate\Support\Collection $workRecords
-     * @return \Illuminate\Support\Collection
-     */
-    private function mapByDate(Collection $workRecords): Collection
-    {
-        return $workRecords->mapWithKeys(function ($workRecord) {
-            $strDate = $workRecord->work_date->toDateString();
-            $workTime = Common::getWorkTime($workRecord->clock_in, $workRecord->clock_out, $workRecord->break_time, true);
-            $workTimeMinutes = Common::getWorkTime($workRecord->clock_in, $workRecord->clock_out, $workRecord->break_time, false);
-
-            return [
-                $strDate => [
-                    'work_record_id' => $workRecord->id ?? null,
-                    'clock_in'  => $workRecord->clock_in ? $workRecord->clock_in->format('H:i') : null,
-                    'clock_out' => $workRecord->clock_out ? $workRecord->clock_out->format('H:i') : null,
-                    'break_time' => $workRecord->break_time ? Carbon::createFromTime(0, 0)->addMinutes($workRecord->break_time)->format('H:i') : null,
-                    'work_time' => $workTime ?? null,
-                    'memo'       => $workRecord->memo ?? null,
-                    'break_time_minutes' => $workRecord->break_time ? $workRecord->break_time : null,
-                    'work_time_minutes' => $workTimeMinutes,
-                ]
-            ];
-        });
-    }
-
-    /**
-     * 勤怠データの取得
-     * 
-     * @param \Carbon\CarbonPeriod $targetMonthPeriods
-     * @param \Illuminate\Support\Collection $workRecordList
-     * @return array
-     */
-    private function getWorkRecordData(CarbonPeriod $targetMonthPeriods, Collection $workRecordList): array
-    {
-        foreach ($targetMonthPeriods as $dateTime) {
-            $date = $dateTime->toDateString();
-            $workRecordData[] = [
-                'work_record_id' => $workRecordList[$date]['work_record_id'] ?? '',
-                'date' => $dateTime->format('Y-m-d'),
-                'day'         => $dateTime->day,
-                'day_of_week' => $dateTime->isoFormat('ddd'),
-                'clock_in'    => $workRecordList[$date]['clock_in'] ?? '',
-                'clock_out'   => $workRecordList[$date]['clock_out'] ?? '',
-                'break_time'  => $workRecordList[$date]['break_time'] ?? '',
-                'work_time'  => $workRecordList[$date]['work_time'] ?? '',
-                'memo'        => $workRecordList[$date]['memo'] ?? '',
-                'is_saturday'   => $dateTime->isSaturday(),
-                'is_holiday'    => $dateTime->isHoliday() || $dateTime->isSunday() ? true : false,
-            ];
-        }
-
-        return $workRecordData;
-    }
 }

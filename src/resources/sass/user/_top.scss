@@ -70,7 +70,8 @@
 
         .work-record {
             &.table {
-                max-height: 390px;
+                max-height: calc(100vh - 420px);
+                margin: 0;
             }
 
             &.table thead {

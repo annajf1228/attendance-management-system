@@ -24,21 +24,6 @@ class AdminController extends Controller
     }
 
     /**
-     * タイトル取得
-     * 
-     * @param string $subTitle
-     * @return array
-     */
-    protected function getTitle(string $subTitle): array
-    {
-        $pageTitle = config('const.title.page_title.admin.admin') . ' ' . $subTitle;
-        return [
-            'pageTitle' => $pageTitle,
-            'webTitle' => config('const.title.web_title.admin') . ' | ' . $pageTitle,
-        ];
-    }
-
-    /**
      * TOP画面表示
      * 
      * @return \Illuminate\Contracts\View\View
@@ -55,7 +40,7 @@ class AdminController extends Controller
      */
     public function index(): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.index'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.admin'), config('const.title.sub_title.index'));
         $admins = $this->adminRepository->paginate(10, ['id' => true]);
 
         return view('admin.admin.index', compact('admins', 'titles'));
@@ -68,7 +53,7 @@ class AdminController extends Controller
      */
     public function create(): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.create'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.admin'), config('const.title.sub_title.create'));
 
         return view('admin.admin.create', compact('titles'));
     }
@@ -106,7 +91,7 @@ class AdminController extends Controller
      */
     public function show(ShowAdminRequest $request): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.show'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.admin'), config('const.title.sub_title.show'));
         $admin = $this->adminRepository->findOrFail($request->id);
 
         return view('admin.admin.show', compact('admin', 'titles'));
@@ -120,7 +105,7 @@ class AdminController extends Controller
      */
     public function edit(ShowAdminRequest $request): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.edit'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.admin'), config('const.title.sub_title.edit'));
         $admin = $this->adminRepository->findOrFail($request->id);
 
         return view('admin.admin.edit', compact('admin', 'titles'));

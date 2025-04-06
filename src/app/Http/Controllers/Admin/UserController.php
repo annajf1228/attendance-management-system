@@ -22,28 +22,13 @@ class UserController extends Controller
     public function __construct(private UserRepository $userRepository) {}
 
     /**
-     * タイトル取得
-     * 
-     * @param string $subTitle
-     * @return array
-     */
-    protected function getTitle(string $subTitle): array
-    {
-        $pageTitle = config('const.title.page_title.admin.user') . ' ' . $subTitle;
-        return [
-            'pageTitle' => $pageTitle,
-            'webTitle' => config('const.title.web_title.admin') . ' | ' . $pageTitle,
-        ];
-    }
-
-    /**
      * スタッフ一覧表示
      * 
      * @return \Illuminate\Contracts\View\View
      */
     public function index(): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.index'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.user'), config('const.title.sub_title.index'));
         $users = $this->userRepository->paginate(10, ['id' => true]);
 
         return view('admin.user.index', compact('users', 'titles'));
@@ -56,7 +41,7 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.create'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.user'), config('const.title.sub_title.create'));
 
         return view('admin.user.create', compact('titles'));
     }
@@ -96,7 +81,7 @@ class UserController extends Controller
      */
     public function show(ShowUserRequest $request): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.show'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.user'), config('const.title.sub_title.show'));
         $user = $this->userRepository->findOrFail($request->id);
 
         return view('admin.user.show', compact('user', 'titles'));
@@ -110,7 +95,7 @@ class UserController extends Controller
      */
     public function edit(ShowUserRequest $request): View
     {
-        $titles = $this->getTitle(config('const.title.sub_title.edit'));
+        $titles = $this->getAdminTitle(config('const.title.page_title.admin.user'), config('const.title.sub_title.edit'));
         $user = $this->userRepository->findOrFail($request->id);
 
         return view('admin.user.edit', compact('user', 'titles'));

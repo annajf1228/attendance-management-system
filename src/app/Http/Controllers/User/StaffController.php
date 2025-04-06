@@ -10,15 +10,11 @@ use App\Repositories\UserRepository;
 use App\Repositories\WorkRecordRepository;
 use App\Libraries\Common;
 use Carbon\Carbon;
-use Carbon\CarbonPeriod;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Collection;
-
-
 
 /**
  * スタッフページコントローラ
@@ -29,20 +25,6 @@ class StaffController extends Controller
         private UserRepository $userRepository,
         private WorkRecordRepository $workRecordRepository,
     ) {}
-
-    /**
-     * タイトル取得
-     * 
-     * @param string $pageTitle
-     * @return array
-     */
-    protected function getTitle(string $pageTitle): array
-    {
-        return [
-            'pageTitle' => $pageTitle,
-            'webTitle' => config('const.title.web_title.user') . ' | ' . $pageTitle,
-        ];
-    }
 
     /**
      * TOP画面表示
@@ -75,7 +57,7 @@ class StaffController extends Controller
      */
     public function index(IndexStaffRequest $request): View
     {
-        $titles = $this->getTitle(config('const.title.page_title.user.staff.index'));
+        $titles = $this->getUserTitle(config('const.title.page_title.user.staff.index'));
 
         $id = Auth::guard('web')->user()->id;
         $now = Carbon::now();
@@ -184,7 +166,7 @@ class StaffController extends Controller
      */
     public function edit(EditStaffRequest $request): View
     {
-        $titles = $this->getTitle(config('const.title.page_title.user.staff.edit'));
+        $titles = $this->getUserTitle(config('const.title.page_title.user.staff.edit'));
 
         $id = Auth::guard('web')->user()->id;
         $workRecord = $this->workRecordRepository->findOrFail($request->work_record_id);

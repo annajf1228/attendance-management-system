@@ -61,7 +61,8 @@
     }
 
     &__work-record {
-        margin: 0 100px;
+        width: 1000px;
+        margin: 0 auto;
 
         .title {
             font-size: 20px;
@@ -101,6 +102,10 @@
 
                 .edit-btn {
                     width: 7%;
+                }
+
+                .memo {
+                    width: 44%;
                 }
             }
 

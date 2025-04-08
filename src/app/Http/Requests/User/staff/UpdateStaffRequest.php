@@ -25,7 +25,7 @@ class UpdateStaffRequest extends FormRequest
     {
         return [
             'break_time' => ['bail', 'required', 'integer', Rule::in(array_keys(config('const.break_time_list')))],
-            'memo' => ['bail', 'required', 'string', 'max:1000'],
+            'memo' => ['bail', 'nullable', 'string', 'max:1000'],
         ];
     }
 

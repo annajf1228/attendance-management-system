@@ -1,6 +1,11 @@
 .user-staff-index {
     margin: 0px 27px;
 
+    &__content {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
     &__search {
         margin: 17px 0 6px 0;
     }
@@ -39,6 +44,10 @@
 
                 .edit-btn {
                     width: 7%;
+                }
+
+                .memo {
+                    width: 44%;
                 }
             }
 

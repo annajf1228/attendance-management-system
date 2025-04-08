@@ -68,7 +68,8 @@ class StaffController extends Controller
         $endDate = $this->workRecordRepository->getWorkDateByUser($id, false);
 
         $targetDate = Carbon::create($selectedYear, $selectedMonth, 1);
-        if (!$targetDate->between($startDate, $now)) {
+
+        if (!$targetDate->between($startDate->startOfMonth(), $now->startOfMonth())) {
             abort(404);
         }
 

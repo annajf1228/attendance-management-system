@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
-use App\Models\Admin;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
 
 class AdminSeeder extends Seeder
 {
@@ -25,20 +25,20 @@ class AdminSeeder extends Seeder
                 '山田　管理2',
                 '山田　管理3',
             ];
-            
+
             $dataList = [];
-            
+
             foreach ($nameList as $index => $name) {
                 $dataList[] = [
                     'id' => $index + 1,
                     'employee_number' => 'AD' . ($index + 1),
                     'name' => $name,
-                    'password' => Hash::make('password'),
+                    'password' => Hash::make('test1234'),
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ];
             }
-            
+
             DB::table('admins')->insert($dataList);
         }
     }

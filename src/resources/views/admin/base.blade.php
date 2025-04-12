@@ -34,7 +34,7 @@
                     <li><a href="{{ route('admin.top') }}">TOP</a></li>
                     <li><a href="{{ route('admin.index') }}">管理者管理</a></li>
                     <li><a href="{{ route('admin.user.index') }}">スタッフ管理</a></li>
-                    <li><a href="">スタッフ勤怠管理</a></li>
+                    <li><a href="{{ route('admin.user-work.view') }}">スタッフ勤怠管理</a></li>
                 </ul>
             </nav>
         </aside>

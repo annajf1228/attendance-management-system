@@ -23,7 +23,11 @@
             @foreach($users as $user)
             <tr>
                 <td>{{ $user->employee_number }}</td>
-                <td>{{ $user->name }}</td>
+                <td class="admin-link">
+                    <a href="{{ route('admin.user-work.index', ['id' => $user->id]) }}" target="_blank">
+                        {{ $user->name }}
+                    </a>
+                </td>
                 <td>{{ $user->created_at->format('Y/m/d H:i') }}</td>
                 <td>{{ $user->updated_at->format('Y/m/d H:i') }}</td>
                 <td><a href="{{ route('admin.user.show', $user->id ) }}" class="btn btn-outline-warning">詳細</a></td>

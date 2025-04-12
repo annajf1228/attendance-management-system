@@ -11,6 +11,7 @@ return [
       'admin' => [
         'admin' => '管理者管理',
         'user' => 'スタッフ管理',
+        'user_work' => 'スタッフ勤怠管理',
       ],
       'user' => [
         'staff' => [

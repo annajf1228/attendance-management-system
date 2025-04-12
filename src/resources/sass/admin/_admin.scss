@@ -15,3 +15,13 @@
   text-align: right;
   padding: 1%;
 }
+
+.admin-link {
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      color: $blue02;
+    }
+  }
+}

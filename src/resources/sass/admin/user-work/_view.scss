@@ -1,0 +1,19 @@
+.admin-user-work-view {
+    margin: 0px 27px;
+
+    &__search {
+        width: 60%;
+        margin: 0 auto;
+
+        .table tbody th {
+            background-color: $white03;
+            text-align: center;
+            vertical-align: middle;
+
+        }
+
+        .search-btn {
+            text-align: end;
+        }
+    }
+}

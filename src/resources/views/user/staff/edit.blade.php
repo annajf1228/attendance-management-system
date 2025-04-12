@@ -43,7 +43,7 @@
                 </tr>
             </table>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('user.staff.index' ) }}" class="btn btn-outline-secondary">一覧へ</a>
+                <a href="{{ route('user.staff.index', ['year' => $workRecord->work_date->format('Y'), 'month' => $workRecord->work_date->format('n')]) }}" class="btn btn-outline-secondary">一覧へ</a>
                 <button type="submit" class="btn btn-outline-primary" onclick="return confirm('更新してもよろしいですか？')">更新</button>
             </div>
         </form>

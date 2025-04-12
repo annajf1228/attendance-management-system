@@ -11,7 +11,7 @@
 <body class="base">
     <header class="base__header">
         <nav class="base__header-nav">
-            <a class="base__header-title" href="/">{{ config('const.title.web_title.user') }}</a>
+            <a class="base__header-title" href="{{ route('user.top') }}">{{ config('const.title.web_title.user') }}</a>
             <div class="base__header-user">
                 <span class="base__header-user-name">
                     {{ Auth::guard('web')->user()->name }}

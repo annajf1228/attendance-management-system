@@ -11,7 +11,7 @@
 <body class="base">
     <header class="base__header admin-header-bg">
         <nav class="base__header-nav">
-            <a class="base__header-title" href="#">{{ config('const.title.web_title.admin') }}</a>
+            <a class="base__header-title" href="{{ route('admin.top') }}">{{ config('const.title.web_title.admin') }}</a>
             <div class="base__header-user">
                 <span class="base__header-user-name">
                     {{ Auth::guard('admin')->user()->name }}

@@ -1,0 +1,61 @@
+.user-staff-index {
+    margin: 0px 27px;
+
+    &__content {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    &__search {
+        margin: 17px 0 6px 0;
+    }
+
+    &__work-record {
+        .work-record {
+            &.table {
+                max-height: calc(100vh - 210px);
+                margin: 0;
+            }
+
+            &.table thead {
+                .day {
+                    width: 3%;
+                }
+
+                .day-of-week {
+                    width: 6%;
+                }
+
+                .clock-in {
+                    width: 10%;
+                }
+
+                .clock-out {
+                    width: 10%;
+                }
+
+                .break-time {
+                    width: 10%;
+                }
+
+                .work-time {
+                    width: 10%;
+                }
+
+                .edit-btn {
+                    width: 7%;
+                }
+
+                .memo {
+                    width: 44%;
+                }
+            }
+
+            &.table tbody {
+                .memo-td {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

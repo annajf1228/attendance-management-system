@@ -1,7 +1,32 @@
 // Body
 $body-bg: #f8fafc;
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// Fonts
+$font-family-base: "Noto Sans JP", sans-serif;
+
+// Colors
+$white01: #ffffff;
+$white02: #DCDCDC;
+$white03: #EEEEEE;
+$white04: #f8f9fa;
+$black01: #000000;
+$black02: #222222;
+$gray01: #666666;
+$purple01: #6454DB;
+$purple02: #6675F3;
+$yellow01: #f9ed8e;
+$blue01: #C8F1FF;
+$blue02: #007bff;
+$blue03: #0056b3;
+$blue04: #75A9FF;
+$red01: #dc3545;
+$red02: #a71d2a;
+$red03: #FFD7D7;
+
+// user heder background-color
+$user-header-bg: linear-gradient(90deg, #6454DB, #6675F3 40%, #6454DB);
+$user-sidebar-hover: rgba(100, 84, 219, 0.2);
+
+// admin header background-color
+$admin-header-bg: linear-gradient(90deg, #222222, #666666);
+$admin-sidebar-hover: rgba(34, 34, 34, 0.2);

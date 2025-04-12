@@ -1,0 +1,23 @@
+.admin-user-work-edit {
+    &__form {
+        width: 80%;
+        margin: 35px auto 0;
+
+        .table-title {
+            background-color: $white03;
+        }
+
+        .table-data {
+            background-color: $white01;
+
+            &.time {
+                width: 295px;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            ;
+        }
+    }
+}

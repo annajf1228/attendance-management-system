@@ -1,0 +1,119 @@
+.user-top {
+    &__clock-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 30px;
+        border-radius: 15px;
+        background: $white04;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 10px 0 20px 0;
+    }
+
+    &__clock-box {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: $white01;
+        padding: 20px 50px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        min-width: 200px;
+    }
+
+    &__clock-button {
+        display: flex;
+        gap: 20px;
+
+        form {
+            button {
+                width: 140px;
+                font-size: 1.4rem;
+                font-weight: bold;
+                padding: 12px 20px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.2s;
+                border: none;
+
+                &.btn-primary {
+                    background: $blue02;
+                    color: $white01;
+
+                    &:hover {
+                        background: $blue03;
+                    }
+                }
+
+                &.btn-danger {
+                    background: $red01;
+                    color: $white01;
+
+                    &:hover {
+                        background: $red02;
+                    }
+                }
+            }
+        }
+    }
+
+    &__work-record {
+        width: 1000px;
+        margin: 0 auto;
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .work-record {
+            &.table {
+                max-height: calc(100vh - 420px);
+                margin: 0;
+            }
+
+            &.table thead {
+                .day {
+                    width: 3%;
+                }
+
+                .day-of-week {
+                    width: 6%;
+                }
+
+                .clock-in {
+                    width: 10%;
+                }
+
+                .clock-out {
+                    width: 10%;
+                }
+
+                .break-time {
+                    width: 10%;
+                }
+
+                .work-time {
+                    width: 10%;
+                }
+
+                .edit-btn {
+                    width: 7%;
+                }
+
+                .memo {
+                    width: 44%;
+                }
+            }
+
+            &.table tbody {
+                .memo-td {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

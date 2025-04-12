@@ -1,0 +1,27 @@
+.admin-form {
+  width: 50%;
+  min-width: 592px;
+}
+.admin-form-table {
+  th {
+    background-color: $white03;
+    vertical-align: middle;
+    font-weight: normal;
+    width: 168px;
+  }
+}
+
+.admin-index-create-btn {
+  text-align: right;
+  padding: 1%;
+}
+
+.admin-link {
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      color: $blue02;
+    }
+  }
+}

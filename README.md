@@ -1,4 +1,7 @@
-## Attendance Management System
+## Attendance Management System 概要
+シンプルな勤怠管理システムです。<br>
+ユーザー側が出退勤ボタンで日々の勤怠を記録・勤怠の確認ができます。 <br>
+管理側ではユーザー作成/勤怠確認・編集などができます。
 
 ## 環境構築手順
 

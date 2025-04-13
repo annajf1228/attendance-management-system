@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         if (app()->isLocal()) {
-            User::query()->delete();
-            DB::statement("ALTER TABLE users AUTO_INCREMENT = 1");
+            DB::table('users')->delete();
+            DB::statement('ALTER TABLE users AUTO_INCREMENT = 1');
 
             $nameList = [
                 '山田　太郎',
@@ -32,7 +32,6 @@ class UserSeeder extends Seeder
             foreach ($nameList as $index => $name) {
                 $id = $index + 1;
                 $dataList[] = [
-                    'id' => $id,
                     'employee_number' => 'US' . ($id),
                     'name' => $name,
                     'email' => 'example' . ($id) . '@example.com',

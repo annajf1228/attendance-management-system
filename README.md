@@ -23,7 +23,7 @@ cd attendance-management-system
 ./commands/init-db.sh
 ```
 
-## 5. アクセス
+## 4. アクセス
 #### ユーザー画面
 http://localhost:8000/login
 - ログイン情報

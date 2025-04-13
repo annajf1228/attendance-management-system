@@ -14,3 +14,9 @@ docker exec -it attendance-management-system-app php artisan key:generate
 
 # アプリケーションコンテナに入って composer install
 docker exec -it attendance-management-system-app composer install
+
+# npm install
+docker exec -it attendance-management-system-app npm install
+
+# フロントエンドビルド
+docker exec -it attendance-management-system-app npm run build
